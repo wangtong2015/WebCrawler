@@ -391,6 +391,13 @@
             },
             search(){
                 let that = this;
+                let loading = this.$loading({
+                    lock: true,
+                    text: '爬取数据中',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
+
                 this.$net.search(
                     this.page,
                     this.username,
@@ -401,6 +408,7 @@
                     that.packets = packets;
                     that.progress = 0;
                     that.$forceUpdate();
+                    loading.close();
                 })
             },
             previous(){

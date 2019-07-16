@@ -27,7 +27,14 @@
       }
     },
     computed :{
-
+      // loading: {
+      //   get: function () {
+      //     return this.$store.state.loading
+      //   },
+      //   set: function (new_value) {
+      //     this.$store.state.loading = new_value
+      //   }
+      // }
     },
     created(){
 
