@@ -409,6 +409,8 @@
                     that.progress = 0;
                     that.$forceUpdate();
                     loading.close();
+                }).catch((error)=>{
+                    loading.close();
                 })
             },
             previous(){

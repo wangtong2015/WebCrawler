@@ -20,3 +20,4 @@
 2019-07-17 02:29:25,085 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
 2019-07-17 02:30:06,867 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/WebCrawler/settings.py changed, reloading.
 2019-07-17 02:30:07,235 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 03:28:32,013 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
