@@ -46,6 +46,7 @@ def search(request):
         topic = request.GET.get('topic', '')
         like_num = request.GET.get('like_num', 0)
         comment_num = request.GET.get('comment_num', 0)
+        cookie = request.GET.get('cookie', '')
         page = parseInt(page, 1)
         like_num = parseInt(like_num)
         comment_num = parseInt(comment_num)
@@ -54,7 +55,8 @@ def search(request):
                          topic=topic,
                          keyword=keyword,
                          like_num=like_num,
-                         comment_num=comment_num)
+                         comment_num=comment_num,
+                         cookie=cookie)
         packets = wb.result
     return json_response(packets)
 

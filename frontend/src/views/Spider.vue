@@ -404,7 +404,8 @@
                     this.keyword,
                     this.topic,
                     this.like_num,
-                    this.comment_num).then((packets)=>{
+                    this.comment_num,
+                    this.$store.state.cookie).then((packets)=>{
                     that.packets = packets;
                     that.progress = 0;
                     that.$forceUpdate();
@@ -550,24 +551,6 @@
         object-fit: contain;
     }
 
-    .label{
-        /*width: 1px;*/
-        text-align:center;
-        vertical-align: middle;
-        border: 1px solid #DCDFE6;
-        background-color: #F5F7FA;
-        margin: 0;
-        border-radius: 4px 0 0 4px;
-        white-space: nowrap;
-        padding:0 10px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .label.left{
-        border-right:none;
-    }
 
 </style>

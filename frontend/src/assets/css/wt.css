@@ -122,3 +122,23 @@ html,body{
     width: 100%;
     background: lightgray;
 }
+
+.label{
+    /*width: 1px;*/
+    text-align:center;
+    vertical-align: middle;
+    border: 1px solid #DCDFE6;
+    background-color: #F5F7FA;
+    margin: 0;
+    border-radius: 4px 0 0 4px;
+    white-space: nowrap;
+    padding:0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.label.left{
+    border-right:none;
+}

@@ -1,0 +1,66 @@
+2019-07-17 04:06:05,369 - django.request - ERROR - Internal Server Error: /spider/search
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 04:09:55,237 - django.request - ERROR - Internal Server Error: /spider/search
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 04:10:07,104 - django.request - ERROR - Internal Server Error: /spider/search
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 04:10:08,594 - django.request - ERROR - Internal Server Error: /spider/search
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 04:10:12,646 - django.request - ERROR - Internal Server Error: /spider/search
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 04:10:14,249 - django.request - ERROR - Internal Server Error: /spider/search
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.

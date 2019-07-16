@@ -18,12 +18,17 @@ from spider import utils
 
 log = settings.log
 from random import randint
+COOKIE = ''
+with open(os.path.join(settings.BASE_DIR, 'spider', 'cookie.txt'), 'r') as f:
+    COOKIE = f.read()
 
-with open(os.path.join(settings.BASE_DIR, 'spider', 'cookie.json'), 'r') as f:
-    COOKIES = json.load(f)
+def save_cookie(cookie):
+    global COOKIE
+    COOKIE = cookie
+    with open(os.path.join(settings.BASE_DIR, 'spider', 'cookie.txt'), 'w') as f:
+        f.write(cookie)
+
 # 爬虫参数
-def get_random_acount():
-    return COOKIES[0]
 
 # # 搜索参数
 # USERNAME = ''
@@ -106,9 +111,15 @@ class Weibo(object):
     base_url = "https://weibo.cn"
     search_url = 'https://weibo.cn/search/?pos=search'
 
-    def __init__(self, user_name='', topic='', keyword='', like_num=0, comment_num=0, page=1):
-        self.account = get_random_acount()
-        self.headers = self.account['header']
+    def __init__(self, user_name='', topic='', keyword='', like_num=0, comment_num=0, page=1, cookie=''):
+        if not cookie:
+            cookie = COOKIE
+        else:
+            save_cookie(cookie)
+        self.headers = {
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
+                "Cookie": cookie
+            }
         self.user_name = user_name
         self.topic = topic
         self.keyword = keyword

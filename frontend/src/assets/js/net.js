@@ -63,7 +63,7 @@ function postJSON(url, data={}) {
 }
 
 
-function search(page, username, keyword, topic, like_num, comment_num) {
+function search(page, username, keyword, topic, like_num, comment_num, cookie) {
     let url = '/search';
     // return new Promise((resolve, reject)=>{
     //     //     resolve(PACKETS);
@@ -81,7 +81,8 @@ function search(page, username, keyword, topic, like_num, comment_num) {
                 keyword: keyword,
                 topic: topic,
                 like_num: like_num,
-                comment_num: comment_num
+                comment_num: comment_num,
+                cookie: cookie
             });
         }).then((packets)=>{
             let res = packets.map(function (packet) {
