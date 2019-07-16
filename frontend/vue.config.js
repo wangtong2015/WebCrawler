@@ -1,10 +1,10 @@
 // vue.config.js
 module.exports = {
-    assetsDir: 'static',
+    assetsDir: 'static'
     // devServer: {
     //     proxy: {
     //         '/spider': {
-    //             target: 'http://127.0.0.1:8000',
+    //             target: 'http://127.0.0.1:9000',
     //             changeOrigin: true
     //             // pathRewrite: {'^/api': ''}
     //         }

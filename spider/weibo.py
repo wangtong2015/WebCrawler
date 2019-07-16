@@ -23,7 +23,7 @@ with open(os.path.join(settings.BASE_DIR, 'spider', 'cookie.json'), 'r') as f:
     COOKIES = json.load(f)
 # 爬虫参数
 def get_random_acount():
-    return COOKIES[4]
+    return COOKIES[0]
 
 # # 搜索参数
 # USERNAME = ''
@@ -249,7 +249,7 @@ class Weibo(object):
 
                 images = tweet_node.xpath('.//img[@alt="图片"]/@src')
                 if images:
-                    packet['images'] = [images[0]]
+                    packet['images'] = images
                 else:
                     packet['images'] = []
                 #
