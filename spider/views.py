@@ -40,7 +40,6 @@ def json_response(result):
 def search(request):
     packets = []
     if request.method == 'GET':
-        print('search')
         page = request.GET.get('page', 1)
         username = request.GET.get('username', '')
         keyword = request.GET.get('keyword', '')
@@ -50,7 +49,6 @@ def search(request):
         page = parseInt(page, 1)
         like_num = parseInt(like_num)
         comment_num = parseInt(comment_num)
-        print(page, username, topic, keyword, like_num, comment_num)
         wb = weibo.Weibo(page=page,
                          user_name=username,
                          topic=topic,
@@ -58,7 +56,6 @@ def search(request):
                          like_num=like_num,
                          comment_num=comment_num)
         packets = wb.result
-        print(packets)
     return json_response(packets)
 
 
