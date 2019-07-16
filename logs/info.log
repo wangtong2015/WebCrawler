@@ -1,0 +1,22 @@
+2019-07-16 23:45:56,381 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-16 23:46:14,717 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py changed, reloading.
+2019-07-16 23:46:15,091 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-16 23:46:20,791 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py changed, reloading.
+2019-07-16 23:46:21,168 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-16 23:46:26,794 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py changed, reloading.
+2019-07-16 23:46:27,172 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-16 23:46:31,759 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py changed, reloading.
+2019-07-16 23:46:32,131 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 00:02:42,471 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/spider/urls.py changed, reloading.
+2019-07-17 00:02:43,089 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 02:27:08,642 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 02:27:10,107 - django.request - WARNING - Not Found: /robots.txt
+2019-07-17 02:27:10,567 - django.request - WARNING - Not Found: /favicon.ico
+2019-07-17 02:27:39,864 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/WebCrawler/settings.py changed, reloading.
+2019-07-17 02:27:40,425 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 02:27:45,046 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/WebCrawler/settings.py changed, reloading.
+2019-07-17 02:27:45,422 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 02:29:15,441 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 02:29:25,085 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-17 02:30:06,867 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/WebCrawler/settings.py changed, reloading.
+2019-07-17 02:30:07,235 - django.utils.autoreload - INFO - Watching for file changes with StatReloader

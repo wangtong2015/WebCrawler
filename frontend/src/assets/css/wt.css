@@ -1,0 +1,124 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
+.stretch{
+    flex-grow: 1;
+}
+
+.col.center{
+    align-items: center;
+}
+
+.col.left{
+    align-items: flex-start;
+}
+
+.col.right{
+    align-items: flex-end;
+}
+
+.col.top{
+    justify-content: flex-start;
+}
+
+.col.middle{
+    justify-content: center;
+}
+
+.col.bottom{
+    justify-content: flex-end;
+}
+
+.row.left{
+    justify-content: flex-start;
+}
+
+.row.center{
+    justify-content: center;
+}
+
+.row.right{
+    justify-content: flex-end;
+}
+
+.row.space-between{
+    justify-content: space-between;
+}
+
+.row.space-around{
+    justify-content: space-around;
+}
+
+.row.top{
+    align-items: flex-start;
+}
+
+.row.middle{
+    align-items: center;
+}
+
+.row.bottom{
+    align-items: flex-end;
+}
+
+.baseline{
+    align-items: baseline;
+}
+
+.fill{
+    width: 100%;
+    height: 100%;
+}
+
+.fillH{
+    height: 100%;
+}
+
+.fillW{
+    width: 100%;
+}
+.no-padding{
+    padding: 0;
+}
+
+.no-margin{
+    margin: 0;
+}
+
+.container{
+    width: 96%;
+    height: 100%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.line{
+    margin: 3px;
+    height: 1px;
+    width: 100%;
+    background: lightgray;
+}
