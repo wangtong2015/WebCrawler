@@ -15,6 +15,7 @@ idna==2.8
 incremental==17.5.0
 lxml==4.3.4
 parsel==1.5.1
+Pillow==6.1.0
 pyasn1==0.4.5
 pyasn1-modules==0.2.5
 pycparser==2.19
@@ -35,4 +36,5 @@ sqlparse==0.3.0
 Twisted==19.2.1
 urllib3==1.25.3
 w3lib==1.20.0
+whatimage==0.0.3
 zope.interface==4.6.0
