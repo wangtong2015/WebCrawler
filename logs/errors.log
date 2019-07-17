@@ -64,3 +64,339 @@ Traceback (most recent call last):
   File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
     'url': request.get_host() + new_path,
 RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/search/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 14:28:25,458 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 15:43:45,918 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 20:06:20,476 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 20:54:09,249 - django.request - ERROR - Internal Server Error: /spider/test/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 82, in test
+    print(request.json())
+AttributeError: 'WSGIRequest' object has no attribute 'json'
+2019-07-17 20:54:17,389 - django.request - ERROR - Internal Server Error: /spider/test/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 82, in test
+    print(request.json())
+AttributeError: 'WSGIRequest' object has no attribute 'json'
+2019-07-17 21:04:33,426 - django.request - ERROR - Internal Server Error: /spider/test/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 83, in test
+    print(request.body.get('originalName'))
+AttributeError: 'bytes' object has no attribute 'get'
+2019-07-17 21:05:53,145 - django.request - ERROR - Internal Server Error: /spider/test/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 83, in test
+    print(request.body.get('originalName'))
+AttributeError: 'bytes' object has no attribute 'get'
+2019-07-17 22:34:31,514 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 22:38:16,673 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 22:39:07,885 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 22:41:54,986 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view spider.views.confirm didn't return an HttpResponse object. It returned None instead.
+2019-07-17 22:42:24,348 - django.request - ERROR - Internal Server Error: /spider/confirm
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/confirm/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-17 23:01:19,749 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 71, in confirm
+    image_path_list = net.downloadImage(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:01:47,393 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 75, in confirm
+    image_url_list = net.upload_image(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 75, in upload_image
+    for image in images:
+TypeError: 'NoneType' object is not iterable
+2019-07-17 23:02:32,470 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 71, in confirm
+    image_path_list = net.downloadImage(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:02:44,687 - root - ERROR - string indices must be integers
+2019-07-17 23:02:44,711 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 77, in confirm
+    imageList[index]['img'] = image_url
+IndexError: list index out of range
+2019-07-17 23:02:47,157 - root - ERROR - string indices must be integers
+2019-07-17 23:02:47,183 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 77, in confirm
+    imageList[index]['img'] = image_url
+IndexError: list index out of range
+2019-07-17 23:02:49,810 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 71, in confirm
+    image_path_list = net.downloadImage(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:03:36,913 - root - ERROR - string indices must be integers
+2019-07-17 23:03:36,947 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 77, in confirm
+    imageList[index]['img'] = image_url
+IndexError: list index out of range
+2019-07-17 23:05:12,686 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 71, in confirm
+    image_path_list = net.downloadImage(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:07:10,177 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 70, in confirm
+    packets = json.loads(body)
+  File "/anaconda3/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/anaconda3/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/anaconda3/lib/python3.6/json/decoder.py", line 355, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 3 (char 2)
+2019-07-17 23:07:38,703 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 71, in confirm
+    imageList = packet['imageList']
+KeyError: 'imageList'
+2019-07-17 23:08:31,075 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 75, in confirm
+    image_path_list = net.downloadImage(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:09:38,736 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 75, in confirm
+    image_path_list = net.downloadImage(imageList)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:25:24,929 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 74, in confirm
+    net.downloadImage(imageList, modify=True)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:25:37,415 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 74, in confirm
+    net.downloadImage(imageList, modify=True)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 33, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-17 23:26:56,934 - django.request - ERROR - Internal Server Error: /spider/confirm/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 74, in confirm
+    net.downloadImage(imageList, modify=True)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/net.py", line 34, in downloadImage
+    image_name = str(hash(image_url)) + ext
+TypeError: must be str, not NoneType
+2019-07-18 01:29:06,048 - django.request - ERROR - Internal Server Error: /spider/upload/image/avatar/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view spider.views.upload_avatar didn't return an HttpResponse object. It returned None instead.
+2019-07-18 02:21:48,539 - root - ERROR - Expecting value: line 1 column 1 (char 0)
+2019-07-18 02:23:28,060 - root - ERROR - Expecting value: line 1 column 1 (char 0)
+2019-07-18 02:23:46,168 - root - ERROR - Expecting value: line 1 column 1 (char 0)
+2019-07-18 02:24:27,066 - root - ERROR - Expecting value: line 1 column 1 (char 0)
+2019-07-18 02:24:55,572 - root - ERROR - Expecting value: line 1 column 1 (char 0)
+2019-07-18 03:56:05,571 - root - ERROR - string indices must be integers
+2019-07-18 03:56:07,201 - root - ERROR - string indices must be integers

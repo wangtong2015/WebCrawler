@@ -14,19 +14,11 @@ import datetime
 from WebCrawler import settings
 import os
 from spider import utils
-
+from WebCrawler import header
 
 log = settings.log
 from random import randint
-COOKIE = ''
-with open(os.path.join(settings.BASE_DIR, 'spider', 'cookie.txt'), 'r') as f:
-    COOKIE = f.read()
 
-def save_cookie(cookie):
-    global COOKIE
-    COOKIE = cookie
-    with open(os.path.join(settings.BASE_DIR, 'spider', 'cookie.txt'), 'w') as f:
-        f.write(cookie)
 
 # 爬虫参数
 
@@ -107,19 +99,21 @@ def extract_comment_content(comment_html):
     return s
 
 
+def fix_image_url(base_url, image_url):
+    if image_url and image_url[0] == '/':
+        return base_url + image_url
+    else:
+        return image_url
+
+
 class Weibo(object):
     base_url = "https://weibo.cn"
     search_url = 'https://weibo.cn/search/?pos=search'
 
-    def __init__(self, user_name='', topic='', keyword='', like_num=0, comment_num=0, page=1, cookie=''):
-        if not cookie:
-            cookie = COOKIE
-        else:
-            save_cookie(cookie)
-        self.headers = {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
-                "Cookie": cookie
-            }
+    def __init__(self, user_name='', topic='', keyword='', like_num=0, comment_num=0, page=1, cookie='', count=-1):
+        header.set_cookie(cookie)
+        self.count = count
+        self.headers = header.get_header()
         self.user_name = user_name
         self.topic = topic
         self.keyword = keyword
@@ -232,6 +226,9 @@ class Weibo(object):
         tweet_nodes = tree_node.xpath('//div[@class="c" and @id]')
         for index, tweet_node in enumerate(tweet_nodes):
             utils.log_progress(index, len(tweet_nodes))
+            if self.count == 0:
+                break
+            self.count -= 1
             try:
                 packet = dict()
                 # packet['crawl_time'] = int(time.time())
@@ -249,20 +246,34 @@ class Weibo(object):
                 #     packet['created_at'] = time_fix(create_time_info.strip())
 
                 like_num = tweet_node.xpath('.//a[contains(text(),"赞[")]/text()')[-1]
-                packet['like_num'] = int(re.search('\d+', like_num).group())
+                like_num = int(re.search('\d+', like_num).group())
+                if like_num < self.like_num:
+                    continue
+                packet['like_num'] = like_num
 
                 repost_num = tweet_node.xpath('.//a[contains(text(),"转发[")]/text()')[-1]
-                packet['repost_num'] = int(re.search('\d+', repost_num).group())
+                repost_num = int(re.search('\d+', repost_num).group())
+                packet['repost_num'] = repost_num
 
                 comment_num = tweet_node.xpath(
                     './/a[contains(text(),"评论[") and not(contains(text(),"原文"))]/text()')[-1]
-                packet['comment_num'] = int(re.search('\d+', comment_num).group())
+                comment_num = int(re.search('\d+', comment_num).group())
+                if comment_num < self.comment_num:
+                    continue
+                packet['comment_num'] = comment_num
 
-                images = tweet_node.xpath('.//img[@alt="图片"]/@src')
-                if images:
-                    packet['images'] = images
+                all_image_url = tweet_node.xpath('.//a[contains(text(),"组图")]/@href')
+                if all_image_url:
+                    images = self.get(all_image_url[0], self.parse_all_image)
                 else:
-                    packet['images'] = []
+                    images = tweet_node.xpath('.//a[contains(text(),"原图")]/@href')
+                    if not images:
+                        images = tweet_node.xpath('.//img[@alt="图片"]/@src')
+                if images:
+                    packet['imageList'] = [{'img': fix_image_url(self.base_url, image_url)} for image_url in images]
+                else:
+                    packet['imageList'] = []
+
                 #
                 # videos = tweet_node.xpath('.//a[contains(@href,"https://m.weibo.cn/s/video/show?object_id=")]/@href')
                 # if videos:
@@ -293,7 +304,7 @@ class Weibo(object):
                 comment_url = self.base_url + '/comment/' + packet['weibo_url'].split('/')[-1] + '?page=1'
                 all_comment = []
                 self.get(comment_url, callback=self.parse_comment, meta=all_comment)
-                packet['comments'] = all_comment
+                packet['commentsList'] = all_comment
 
             except Exception as e:
                 # self.logger.error(e)
@@ -301,10 +312,18 @@ class Weibo(object):
             finally:
                 self.result.append(packet)
 
+    def parse_all_image(self, response):
+        image_node = etree.HTML(response.content)
+        images = image_node.xpath('.//a[contains(text(),"原图")]/@href')
+        return images
+
     def parse_user_page(self, response):
         # print(response)
-        return ''
-        pass
+        # 解析本页的数据
+        tree_node = etree.HTML(response.content)
+        urls = tree_node.xpath('.//a[contains(text(),"{0}")]/@href'.format(self.user_name))
+        if urls:
+            self.get(urls[0], callback=self.parse_tweet_page)
 
     def parse_all_content(self, response):
         tree_node = etree.HTML(response.content)
@@ -324,7 +343,7 @@ class Weibo(object):
             comment_item = dict()
             # comment_item['crawl_time'] = int(time.time())
             # comment_item['comment_user_id'] = re.search(r'/u/(\d+)', comment_user_url[0]).group(1)
-            comment_item['content'] = extract_comment_content(etree.tostring(comment_node, encoding='unicode'))
+            comment_item['commentContent'] = extract_comment_content(etree.tostring(comment_node, encoding='unicode'))
             # comment_item['_id'] = comment_node.xpath('./@id')[0]
             # created_at_info = comment_node.xpath('.//span[@class="ct"]/text()')[0]
             # like_num = comment_node.xpath('.//a[contains(text(),"赞[")]/text()')[-1]
@@ -342,7 +361,7 @@ class Weibo(object):
 
 
 if __name__ == '__main__':
-    res = Weibo(keyword="英雄联盟").result
+    res = Weibo(keyword="9图").result
     print(json.dumps(res, sort_keys=True, indent=4, separators=(', ', ': '), ensure_ascii=False))
 
 

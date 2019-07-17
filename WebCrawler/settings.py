@@ -14,7 +14,7 @@ import os
 import logging
 import logging.config
 import yaml
-
+yaml.warnings({'YAMLLoadWarning': False})
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -130,6 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'frontend/dist/static'),
 ]
+IMAGE_DIR = os.path.join(STATIC_ROOT, 'img')
 
 
 #  跨域增加忽略

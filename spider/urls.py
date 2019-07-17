@@ -6,6 +6,9 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path('search/', views.search),
     path('confirm/', views.confirm),
-    path('robots/', views.robots),
-    path('groups/', views.groups)
+    path('user/fetchUser/', views.fetch_user),
+    path('user/addUser/', views.add_user),
+    path('groups/', views.groups),
+    path('upload/image/avatar/', views.upload_avatar),
+    path('upload/image/', views.upload_image)
 ]

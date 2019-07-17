@@ -90,11 +90,66 @@
                     <div v-for="(image, index) in images" class="col center" style="margin: 2%">
                         <el-image
                                 style="width: 130px; height: 130px; cursor:pointer;"
-                                :src="image.url"
+                                :src="image.img"
+                                alt="加载失败"
                                 @click.native="show_toolbox(index)"
                                 fit="fill">
                         </el-image>
                         <el-checkbox v-model="image.select"></el-checkbox>
+                    </div>
+                </div>
+                <div class="fillW row center" style="margin-top: 1%">
+                    <div class="col center">
+                        <el-badge :value="packet.like_num">
+                            <el-button @click="packet.like_num += 1">点赞</el-button>
+                        </el-badge>
+                        <div class="pad"></div>
+                        <div class="row space-around">
+                            <el-button type="primary"
+                                       size="mini"
+                                       @click="packet.like_num -= 1"
+                                       icon="el-icon-minus" circle></el-button>
+                            <el-button type="danger"
+                                       size="mini"
+                                       @click="packet.like_num = 0"
+                                       icon="el-icon-refresh" circle></el-button>
+                        </div>
+                    </div>
+
+                    <div style="width: 8%"></div>
+                    <div class="col center">
+                        <el-badge :value="packet.comment_num">
+                            <el-button @click="packet.comment_num += 1">评论</el-button>
+                        </el-badge>
+                        <div class="pad"></div>
+                        <div class="row space-around">
+                            <el-button type="primary"
+                                       size="mini"
+                                       @click="packet.comment_num -= 1"
+                                       icon="el-icon-minus" circle></el-button>
+                            <el-button type="danger"
+                                       size="mini"
+                                       @click="packet.comment_num = 0"
+                                       icon="el-icon-refresh" circle></el-button>
+                        </div>
+                    </div>
+                    <div style="width: 8%"></div>
+
+                    <div class="col center">
+                        <el-badge :value="packet.repost_num">
+                            <el-button @click="packet.repost_num += 1">转发</el-button>
+                        </el-badge>
+                        <div class="pad"></div>
+                        <div class="row space-around">
+                            <el-button type="primary"
+                                       size="mini"
+                                       @click="packet.repost_num -= 1"
+                                       icon="el-icon-minus" circle></el-button>
+                            <el-button type="danger"
+                                       size="mini"
+                                       @click="packet.repost_num = 0"
+                                       icon="el-icon-refresh" circle></el-button>
+                        </div>
                     </div>
                 </div>
                 <div class="fill row center">
@@ -121,16 +176,36 @@
                                        shape="square"
                                        size="large"
                                        @click.native="changeSelect(comment)"
+                                       alt="头像"
                                        :src="comment.user.avatar"></el-avatar>
 
                             <div class="col left top fill">
-                                <el-tag type="info" size="mini" style="margin-left: 0.56%">{{comment.user.value}}</el-tag>
+                                <div class="row left middle" style="margin: 0 10px; width: 99%">
+                                    <!--<el-tag type="info" style="margin-left: 1%">{{comment.user.value}}</el-tag>-->
+                                    <el-autocomplete
+                                            class="inline-input"
+                                            v-model="comment.user.value"
+                                            :fetch-suggestions="robotSearch"
+                                            style="width: 20%"
+                                            @select="select_robot($event, comment.user)"
+                                            placeholder="用户">
+                                    </el-autocomplete>
+
+                                    <el-date-picker
+                                            style="margin-left: 1%;"
+                                            v-model="comment.addTime"
+                                            align="right"
+                                            type="datetime"
+                                            placeholder="选择日期"
+                                            :picker-options="date_picker_options">
+                                    </el-date-picker>
+                                </div>
                                 <el-input type="textarea"
                                           style="margin: 10px; width: 99%"
                                           show-word-limit
                                           rows="2"
                                           resize="vertical"
-                                          v-model="comment.content"
+                                          v-model="comment.commentContent"
                                           placeholder="评论">
                                 </el-input>
                             </div>
@@ -142,6 +217,7 @@
             </div>
             <div style="height: 100px"></div>
         </div>
+
         <div class="footer">
             <div class="fill">
                 <el-row :gutter="20"
@@ -199,14 +275,18 @@
 
                     <el-col :span="5">
                         <div class="fill row left">
-                            <div class="label left">
-                                马甲号
-                            </div>
+                            <el-avatar class="pointer"
+                                       shape="square"
+                                       size="large"
+                                       style="margin-right: 1%"
+                                       alt="头像"
+                                       :src="packet.user.avatar"></el-avatar>
+
                             <el-autocomplete
-                                    class="inline-input"
-                                    v-model="packet.robot.value"
+                                    v-model="packet.user.value"
                                     :fetch-suggestions="robotSearch"
                                     style="width: 100%"
+                                    @select="select_robot($event, packet.user)"
                                     placeholder="马甲号">
                             </el-autocomplete>
                         </div>
@@ -218,7 +298,7 @@
                                 发送时间
                             </div>
                             <el-date-picker
-                                    v-model="packet.sent_time"
+                                    v-model="packet.addTime"
                                     align="right"
                                     type="datetime"
                                     placeholder="选择日期"
@@ -232,42 +312,43 @@
         </div>
 
         <el-dialog title="图片预览"
-                   width="80%"
+                   width="840px"
                    :visible.sync="toolbox_show">
             <el-carousel :autoplay="false"
                          indicator-position="outside"
-                         height="800px"
+                         height="670px"
                          id="carousel"
                          ref="carousel"
+                         style="width: 800px;"
                          :initial-index="image_index"
                          arrow="hover">
-                <el-carousel-item v-for="(image, index) in images"
-                                  class="fill row center middle"
-                                  style="text-align: center; "
-                                  :key="index">
-                    <div style="width: 100%; height: 100%; ">
-                        <div style="width: 90%; height: 90%; padding: 0;margin:0 auto; ">
-                            <div class="cropbox" :style="crop_style(image)">
 
-                            </div>
-                            <img :src="image.url" class="preview"/>
-                        </div>
-                        <div class="row space-around middle" style="margin-top: 2%">
-                            <el-input-number v-model="image.crop[0]" controls-position="right" :min="0" :max="100"></el-input-number>
-                            <el-input-number v-model="image.crop[1]" controls-position="right" :min="0" :max="100"></el-input-number>
-                            <el-input-number v-model="image.crop[2]" controls-position="right" :min="0" :max="100"></el-input-number>
-                            <el-input-number v-model="image.crop[3]" controls-position="right" :min="0" :max="100"></el-input-number>
-                        </div>
+                <el-carousel-item v-for="(image, index) in images"
+                                  class="fill col center middle"
+                                  style="text-align: center;"
+                                  :key="index">
+                    <div style="width: 800px; height: 600px;">
+                        <div class="cropbox" :style="crop_style(image)"></div>
+                        <img :src="image.img"
+                             alt="加载失败"
+                             style="object-fit: fill;width: 800px; height: 600px; position: absolute; left: 0; top: 0; z-index: 4"/>
+                    </div>
+                    <div class="row space-around middle" style="margin-top: 2%">
+                        <el-input-number v-model="image.crop[0]" controls-position="right" :min="0" :max="100"></el-input-number>
+                        <el-input-number v-model="image.crop[1]" controls-position="right" :min="0" :max="100"></el-input-number>
+                        <el-input-number v-model="image.crop[2]" controls-position="right" :min="0" :max="100"></el-input-number>
+                        <el-input-number v-model="image.crop[3]" controls-position="right" :min="0" :max="100"></el-input-number>
                     </div>
                 </el-carousel-item>
             </el-carousel>
-
         </el-dialog>
 
     </div>
 </template>
 
 <script>
+    const imageWidth = 800;
+    const imageHeight = 600;
 
     export default {
         name: 'Spider',
@@ -284,7 +365,6 @@
                     return Date.now();
                 })(),
                 packets: [],
-                preset_robots: [],
                 date_picker_options: {
                     disabledDate(time) {
                         let now = new Date();
@@ -338,13 +418,12 @@
         computed :{
             packet: function(){
                 let packets = this.packets;
-                let progress = this.progress;
-                if(packets.length > progress){
-                    return packets[progress];
+                if(packets.length > this.progress){
+                    return packets[this.progress];
                 }else{
                     return {
                         select: false,
-                        robot: "",
+                        user: {},
                         sent_time: Date.now(),
                         content: "",
                         images: [],
@@ -354,13 +433,13 @@
                 }
             },
             images: function () {
-                return this.packet.images;
+                return this.packet.imageList;
             },
             groups: function () {
                 return this.packet.groups;
             },
             comments: function () {
-                return this.packet.comments;
+                return this.packet.commentsList;
             }
         },
         created(){
@@ -368,10 +447,7 @@
         },
         mounted(){
             let that = this;
-            this.$net.getRobots().then((data)=>{
-                that.preset_robots = data;
-                that.search();
-            });
+            // that.search();
         },
         methods: {
             changeSelect(obj){
@@ -379,7 +455,7 @@
                 this.$forceUpdate()
             },
             robotSearch(robot_name, cb){
-                let robots = this.preset_robots;
+                let robots = this.$store.state.robots;
                 let result = robot_name ? robots.filter(this.robotFilter(robot_name)) : robots;
                 // 调用 callback 返回建议列表的数据
                 cb(result);
@@ -405,13 +481,24 @@
                     this.topic,
                     this.like_num,
                     this.comment_num,
-                    this.$store.state.cookie).then((packets)=>{
+                    this.$store.state.cookie
+                ).then((packets)=>{
                     that.packets = packets;
                     that.progress = 0;
                     that.$forceUpdate();
                     loading.close();
-                }).catch((error)=>{
+                    that.$message({
+                        showClose: true,
+                        message: "操作成功",
+                        type: 'success'
+                    });
+                }).catch((message)=>{
                     loading.close();
+                    that.$message({
+                        showClose: true,
+                        message: message,
+                        type: 'error'
+                    });
                 })
             },
             previous(){
@@ -428,14 +515,27 @@
                 this.next();
             },
             next(){
+                let that = this;
                 if(this.progress >= this.packets.length - 1){
-                    this.$net.confirm(this.packets);
+                    this.$net.confirm(this.packets, this.$store.state.cookie).then((data)=>{
+                        that.$message({
+                            showClose: true,
+                            message: "操作成功",
+                            type: 'success'
+                        });
+                    }).catch((message)=>{
+                        that.$message({
+                            showClose: true,
+                            message: message,
+                            type: 'error'
+                        });
+                    });
                     this.page += 1;
                     this.search();
                 }else{
                     this.progress += 1;
-                    if(this.packets[progress].sent_time < Date.now()){
-                        this.packets[progress].sent_time = Date.now();
+                    if(this.packets[this.progress].sent_time < Date.now()){
+                        this.packets[this.progress].sent_time = Date.now();
                     }
                 }
             },
@@ -447,24 +547,35 @@
                 this.toolbox_show = true;
             },
             crop_style: function (image) {
-                let xL = image.crop[0];
-                let yL = image.crop[1];
-                let xR = image.crop[2];
-                let yR = image.crop[3];
-                let x = xL + '%';
-                let y = yL + '%';
-                let w = (xR - xL) * 0.99 + '%';
-                let h = (yR - yL) * 0.91 + '%';
+                let width = 796;
+                let height = 596;
+                let xL = image.crop[0] / 100;
+                let yL = image.crop[1] / 100;
+                let xR = image.crop[2] / 100;
+                let yR = image.crop[3] / 100;
+                let l = xL * width;
+                let t = yL * height;
+                let w = (xR - xL) * width;
+                let h = (yR - yL) * height;
                 // return {
                 //   width: '100%',
                 //   height: '100%'
                 // }
                 return {
-                    left: x,
-                    top: y,
-                    width: w,
-                    height: h
+                    left: l + 'px',
+                    top: t + 'px',
+                    width: w + 'px',
+                    height: h + 'px'
                 }
+            },
+            select_robot(robot, user){
+                user.uid = robot.uid;
+                user.avatar = robot.avatar;
+                user.gender = robot.gender;
+                user.userId = robot.userId;
+                user.nickName = robot.nickName;
+                user.age = robot.age;
+                user.value = robot.value;
             }
         }
     }
@@ -509,20 +620,16 @@
 
 
     .cropbox{
-        border: 2px solid red;
-        z-index: 20;
         overflow: hidden;
-        padding: 0;
+        border: 2px solid red;
+        z-index: 10;
         position: absolute;
     }
 
     .preview{
         object-fit: fill;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 99.1%;
-        height: 91.2%;
+        width: 800px;
+        height: 600px;
     }
 
     .header{
@@ -544,6 +651,7 @@
         height: 5%;
         bottom: 0;
     }
+
     .img_fill{
         object-fit: fill;
     }

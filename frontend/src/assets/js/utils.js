@@ -43,4 +43,11 @@ function isInDiv(event,divId){
     return ( x < divx1 || x > divx2 || y < divy1 || y > divy2)
 }
 
-export {copy, display, isStrEmpty, isObjEmpty, isInDiv}
+
+function timeFix(time) {
+    let date = new Date(time);
+    return parseInt(date.Format("yyyyMMddhhmmssS"));
+}
+
+
+export {copy, display, isStrEmpty, isObjEmpty, isInDiv, timeFix}
