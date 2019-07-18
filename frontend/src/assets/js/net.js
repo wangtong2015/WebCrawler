@@ -228,6 +228,7 @@ function getRobots(count=100, force=false) {
                         "userId": robot.userId,
                         "nickName": robot.nickName,
                         "age": 8,
+                        "mobileNum": robot.mobileNum,
                         "value": robot.nickName + '#' + robot.userId + gender
                     }
                 });

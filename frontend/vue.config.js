@@ -1,6 +1,6 @@
 // vue.config.js
 module.exports = {
-    assetsDir: 'static'
+    assetsDir: 'static',
     // devServer: {
     //     proxy: {
     //         '/spider': {

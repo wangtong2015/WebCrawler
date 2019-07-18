@@ -1,7 +1,7 @@
 <template>
     <div class="fill">
         <el-row style="margin-top: 1%">
-            <el-col :span="4" :offset="2">
+            <el-col :span="6" :offset="1">
                 <div class="fillW col center top">
                     <div style="border: 1px dashed gray; width: 100px; height: 100px">
                         <el-upload
@@ -65,12 +65,12 @@
                     </div>
 
                     <div class="fillW row center" style="margin-top: 30px">
-                        <el-button type="primary" @click="addUser">添加用户<i class="el-icon-upload el-icon--right"></i></el-button>
+                        <el-button type="primary" @click="addUser" :disabled="!canSubmit">添加用户<i class="el-icon-upload el-icon--right"></i></el-button>
                     </div>
                 </div>
             </el-col>
 
-            <el-col :span="8" :offset="6">
+            <el-col :span="13" :offset="3">
                 <el-table
                         :data="robots"
                         style="width: 100%"
@@ -83,7 +83,15 @@
                             width="80">
                     </el-table-column>
                     <el-table-column
-                            fixed
+                            prop="avatar"
+                            label="头像"
+                            width="100">
+                        <!-- 图片的显示 -->
+                        <template   slot-scope="scope">
+                            <img :src="scope.row.avatar"  min-width="70" height="70" />
+                        </template>
+                    </el-table-column>
+                    <el-table-column
                             prop="nickName"
                             label="昵称"
                             width="250">
@@ -98,6 +106,11 @@
                             prop="age"
                             label="年龄"
                             width="80">
+                    </el-table-column>
+                    <el-table-column
+                            prop="mobileNum"
+                            label="手机"
+                            width="200">
                     </el-table-column>
                 </el-table>
             </el-col>
@@ -154,6 +167,9 @@
         computed:{
             robots: function () {
                 return this.$store.state.robots;
+            },
+            canSubmit: function () {
+                return this.user.avatarImg && this.user.nickName;
             }
         },
         methods: {

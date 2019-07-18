@@ -719,3 +719,9 @@ Traceback (most recent call last):
 requests.exceptions.MissingSchema: Invalid URL '/caizicaixukun?f=search_0': No schema supplied. Perhaps you meant http:///caizicaixukun?f=search_0?
 2019-07-18 15:54:14,989 - django.utils.autoreload - INFO - /Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py changed, reloading.
 2019-07-18 15:54:15,360 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-18 15:58:32,015 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-18 15:58:33,886 - django.request - WARNING - Not Found: /spider/robots
+2019-07-18 15:58:36,476 - django.request - WARNING - Not Found: /spider/robots
+2019-07-18 15:58:44,895 - django.request - WARNING - Not Found: /spider/robots/
+2019-07-18 16:06:26,761 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
+2019-07-18 16:08:31,119 - django.utils.autoreload - INFO - Watching for file changes with StatReloader
