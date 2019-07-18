@@ -86,6 +86,7 @@
                           rows="6"
                           resize="vertical"
                           v-model="packet.content" placeholder="内容"></el-input>
+
                 <div class="fill row center">
                     <div v-for="(image, index) in images" class="col center" style="margin: 2%">
                         <el-image
@@ -312,14 +313,14 @@
         </div>
 
         <el-dialog title="图片预览"
-                   width="840px"
+                   width="1040px"
                    :visible.sync="toolbox_show">
             <el-carousel :autoplay="false"
                          indicator-position="outside"
-                         height="670px"
+                         height="700px"
                          id="carousel"
                          ref="carousel"
-                         style="width: 800px;"
+                         style="width: 1000px;"
                          :initial-index="image_index"
                          arrow="hover">
 
@@ -327,17 +328,21 @@
                                   class="fill col center middle"
                                   style="text-align: center;"
                                   :key="index">
-                    <div style="width: 800px; height: 600px;">
+                    <div style="width: 1000px; height: 600px;">
                         <div class="cropbox" :style="crop_style(image)"></div>
                         <img :src="image.img"
                              alt="加载失败"
-                             style="object-fit: fill;width: 800px; height: 600px; position: absolute; left: 0; top: 0; z-index: 4"/>
+                             style="object-fit: fill;width: 1000px; height: 600px; position: absolute; left: 0; top: 0; z-index: 4"/>
                     </div>
-                    <div class="row space-around middle" style="margin-top: 2%">
+                    <div class="fillW" style="margin-top: 2px">
+                        {{cal_image_width(image)}}
+                        X {{cal_image_height(image)}} &nbsp;&nbsp; {{cal_image_size(image)}}MB</div>
+                    <div class="row space-around middle" style="margin-top: 2px">
                         <el-input-number v-model="image.crop[0]" controls-position="right" :min="0" :max="100"></el-input-number>
                         <el-input-number v-model="image.crop[1]" controls-position="right" :min="0" :max="100"></el-input-number>
                         <el-input-number v-model="image.crop[2]" controls-position="right" :min="0" :max="100"></el-input-number>
                         <el-input-number v-model="image.crop[3]" controls-position="right" :min="0" :max="100"></el-input-number>
+                        <el-input-number v-model="image.crop[4]" controls-position="right" :min="0" :max="100"></el-input-number>
                     </div>
                 </el-carousel-item>
             </el-carousel>
@@ -350,8 +355,12 @@
     const imageWidth = 800;
     const imageHeight = 600;
 
+
     export default {
         name: 'Spider',
+        components:{
+
+        },
         data() {
             return {
                 page: 1,
@@ -517,21 +526,23 @@
             next(){
                 let that = this;
                 if(this.progress >= this.packets.length - 1){
-                    this.$net.confirm(this.packets, this.$store.state.cookie).then((data)=>{
+                    let packets = this.$utils.copy(this.packets);
+                    this.$net.confirm(packets, this.$store.state.cookie).then((data)=>{
                         that.$message({
                             showClose: true,
                             message: "操作成功",
                             type: 'success'
                         });
+                        that.search()
                     }).catch((message)=>{
                         that.$message({
                             showClose: true,
                             message: message,
                             type: 'error'
                         });
+                        that.search()
                     });
                     this.page += 1;
-                    this.search();
                 }else{
                     this.progress += 1;
                     if(this.packets[this.progress].sent_time < Date.now()){
@@ -547,7 +558,7 @@
                 this.toolbox_show = true;
             },
             crop_style: function (image) {
-                let width = 796;
+                let width = 996;
                 let height = 596;
                 let xL = image.crop[0] / 100;
                 let yL = image.crop[1] / 100;
@@ -569,6 +580,7 @@
                 }
             },
             select_robot(robot, user){
+                // obj.user = robot.user;
                 user.uid = robot.uid;
                 user.avatar = robot.avatar;
                 user.gender = robot.gender;
@@ -576,6 +588,17 @@
                 user.nickName = robot.nickName;
                 user.age = robot.age;
                 user.value = robot.value;
+                console.log(robot);
+                this.$forceUpdate()
+            },
+            cal_image_width(image){
+                return parseInt((image.size[0]) * (image.crop[2] - image.crop[0]) / 100 * image.crop[4] / 100)
+            },
+            cal_image_height(image){
+                return parseInt(image.size[1] * (image.crop[3] - image.crop[1]) / 100 * image.crop[4] / 100)
+            },
+            cal_image_size(image){
+                return (this.cal_image_width(image) * this.cal_image_height(image) * 3  /1024 / 1024 / 8* image.crop[4] / 100).toFixed(2)
             }
         }
     }
@@ -628,7 +651,7 @@
 
     .preview{
         object-fit: fill;
-        width: 800px;
+        width: 1000px;
         height: 600px;
     }
 

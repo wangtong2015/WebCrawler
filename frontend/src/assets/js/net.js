@@ -1,5 +1,12 @@
-import axios from 'axios'
-import * as utils from './utils'
+import axios from 'axios';
+import * as utils from './utils';
+import sourceEmoji from 'emoji-convert-resource-base';
+
+import convert from 'emoji-convert';
+
+convert.extend(sourceEmoji);
+
+
 const baseURL = '/spider';
 let GROUPS = [];
 let ROBOTS = [];
@@ -42,7 +49,8 @@ function randomNum(minv, maxv) {
 
 function getRandomRobot() {
     if (!utils.isObjEmpty(ROBOTS)){
-        return ROBOTS[randomNum(0, ROBOTS.length)];
+        let robot = ROBOTS[randomNum(0, ROBOTS.length)];
+        return utils.copy(robot);
     }else{
         getRobots();
         return null
@@ -75,6 +83,7 @@ function getJSON(url, params={}) {
 }
 
 function postJSON(url, data={}) {
+    console.log(url, data);
     return new Promise((resolve, reject) =>{
         // if(URL_DICT.hasOwnProperty(url) && URL_DICT[url]){
         //     reject({});
@@ -120,15 +129,20 @@ function search(page, username, keyword, topic, like_num, comment_num, cookie) {
         }).then((packets)=>{
             let res = packets.map(function (packet) {
                 let images = packet.imageList.map(function (image) {
-                    return {
+                    let new_image = {
                         img: image.img,
                         select: true,
-                        crop: [0, 0, 100, 100]
-                    }
+                        crop: [0, 0, 100, 100, 100],
+                        size: [800, 600, 1]
+                    };
+                    utils.getImageSize(image.img).then((size)=>{
+                        new_image.size = size;
+                    });
+                    return new_image;
                 });
                 let comments = packet.commentsList.map(function (comment) {
                     return {
-                        commentContent: comment.commentContent,
+                        commentContent: convert.toUnicode(comment.commentContent),
                         select: true,
                         user: getRandomRobot(),
                         addTime: Date.now() + randomNum(100000, 1000000)
@@ -141,7 +155,7 @@ function search(page, username, keyword, topic, like_num, comment_num, cookie) {
                     select: true,
                     user: getRandomRobot(),
                     addTime: Date.now() + randomNum(10000, 100000),
-                    content: packet.content,
+                    content: convert.toUnicode(packet.content),
                     imageList: images,
                     commentsList: comments,
                     groups: groups,

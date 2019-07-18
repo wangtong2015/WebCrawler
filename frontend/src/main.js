@@ -9,6 +9,11 @@ import * as utils from './assets/js/utils'
 import { Loading } from 'element-ui';
 import VueClipboard from 'vue-clipboard2';
 
+import source from 'emoji-convert-resource-base';
+import convert from 'emoji-convert';
+
+convert.extend(source);
+
 Date.prototype.Format = function(fmt)
 { //author: meizz
   var o = {
@@ -31,7 +36,7 @@ Date.prototype.Format = function(fmt)
 
 Vue.prototype.$net = net;
 Vue.prototype.$utils = utils;
-
+Vue.prototype.$convert = convert;
 Vue.use(ElementUI); //使用elementUI
 Vue.use(Loading);
 Vue.use(VueClipboard);

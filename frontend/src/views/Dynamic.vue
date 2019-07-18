@@ -4,7 +4,6 @@
         <div class="main" style="margin: 0;">
             <div class="fill col center top">
                 <el-input type="textarea"
-                          show-word-limit
                           rows="6"
                           resize="vertical"
                           v-model="packet.content" placeholder="内容"></el-input>
@@ -224,13 +223,16 @@
 <script>
     const imageWidth = 800;
     const imageHeight = 600;
+    import source from 'emoji-convert-resource-base';
+    import convert from 'emoji-convert';
+    convert.extend(source);
 
     export default {
         name: 'Dynamic',
         data() {
             return {
                 packet: {
-                    content: "",
+                    content: this.$convert.toUnicode("[大笑]"),
                     addTime: Date.now() + 10000,
                     user: {
                         avatar: "",

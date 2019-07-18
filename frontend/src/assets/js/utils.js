@@ -50,4 +50,14 @@ function timeFix(time) {
 }
 
 
-export {copy, display, isStrEmpty, isObjEmpty, isInDiv, timeFix}
+function getImageSize(url) {
+    let img = new Image();
+    img.src = url;
+    return new Promise((resolve, reject)=>{
+        img.onload = function () {
+            resolve([img.width, img.height])
+        }
+    })
+}
+
+export {copy, display, isStrEmpty, isObjEmpty, isInDiv, timeFix, getImageSize}

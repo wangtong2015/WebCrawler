@@ -11,6 +11,7 @@ import time
 from WebCrawler import settings, header
 import whatimage
 from PIL import Image
+from spider import utils
 log = settings.log
 
 
@@ -30,25 +31,27 @@ def downloadImage(imageList, image_dir=settings.IMAGE_DIR, threshold=800, modify
             img = response.content
         except Exception as e:
             log.error(e)
+            image['img'] = ''
             continue
         ext = os.path.splitext(image_url)[-1]
         if not ext:
             ext = whatimage.identify_image(img)
         if not ext:
+            image['img'] = ''
             continue
         if ext[0] != '.':
             ext = '.' + ext
         image_name = str(hash(image_url)) + ext
         image_path = os.path.join(image_dir, image_name)
         with open(image_path, 'wb') as f:
-            f.write(response.content)
+            f.write(img)
         res.append(image_path)
         if modify:
             image['img'] = image_path
     return res
 
 
-def crop_resize_images(images, image_dir='./', threshold=800):
+def crop_resize_images(images, image_dir=settings.IMAGE_DIR):
     res = []
     for image in images:
         image_path = image['img']
@@ -63,17 +66,17 @@ def crop_resize_images(images, image_dir='./', threshold=800):
         )
         im = im.crop(crop)
         width, height = im.size
-        max_size = max(width, height)
-        if max_size > threshold:
-            ratio = threshold / max_size
-            width = int(ratio * width)
-            height = int(ratio * height)
-            im = im.resize((width, height))
-        im.save(image_path)
+        ratio = image_crop[4] / 100
+        width = int(ratio * width)
+        height = int(ratio * height)
+        im = im.resize((width, height))
+        image_path_split = os.path.splitext(image_path)
+        new_image_path = image_path_split[0] + '.' + str(width) + 'x' + str(height) + image_path_split[1]
+        im.save(new_image_path)
         res.append({
-            'img': image_path,
+            'img': new_image_path,
             'width': width,
-            'height': height
+            'high': height
         })
     return res
 
@@ -101,7 +104,6 @@ def upload_image(imageList, mode='dynamic', modify=False):
         if modify:
             for index, image_url in enumerate(res):
                 imageList[index]['img'] = image_url
-
     except Exception as e:
         log.error(e)
     return res
@@ -150,11 +152,11 @@ def batch_save_dynamic(packets):
 
 
 def main():
-    imageList = [
-        {'img': 'https://weibo.cn/mblog/oripic?id=HfS2Na6l8&u=006ZH3qjgy1g009lwqzigj334022r1l1&rl=2', 'crop': [0, 0, 100, 100]},
-        {'img': 'https://weibo.cn/mblog/oripic?id=HfS2Na6l8&u=006ZH3qjgy1g009lzkmzwj334022r7wk&rl=2', 'crop': [0, 0, 100, 100]}
-    ]
+    imageList = [{
+        'img': "https://weibo.cn/mblog/oripic?id=HfS2Na6l8&u=006ZH3qjgy1g009lzkmzwj334022r7wk&rl=2"
+    }]
     downloadImage(imageList, modify=True)
+    print(imageList)
     # img_path = '1.png'
     # res = upload_image(img_path)
     # img_url = res[0]['relativePath']

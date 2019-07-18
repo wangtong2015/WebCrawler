@@ -98,19 +98,34 @@ def extract_comment_content(comment_html):
     s = s.strip()
     return s
 
-
+image_id_url = "http://wx4.sinaimg.cn/large/"
 def fix_image_url(base_url, image_url):
     if image_url and image_url[0] == '/':
-        return base_url + image_url
-    else:
-        return image_url
+        image_url = base_url + image_url
+    ext = os.path.splitext(image_url)[-1]
+    if not ext:
+        try:
+            url_match = re.search(r"&u=(.*?)&", image_url)
+            if url_match:
+                match_id = url_match.group(1)
+                if match_id:
+                    image_url = image_id_url + match_id + '.jpg'
+            else:
+                url_match = re.search(r'id=(.*?)', image_url)
+                if url_match:
+                    match_id = url_match.group(1)
+                    if match_id:
+                        image_url = image_id_url + match_id + '.jpg'
+        except:
+            log.error(image_url)
+    return image_url
 
 
 class Weibo(object):
     base_url = "https://weibo.cn"
     search_url = 'https://weibo.cn/search/?pos=search'
 
-    def __init__(self, user_name='', topic='', keyword='', like_num=0, comment_num=0, page=1, cookie='', count=-1):
+    def __init__(self, user_name='', topic='', keyword='', like_num=0, comment_num=0, page=1, cookie='', count=-1, url=''):
         header.set_cookie(cookie)
         self.count = count
         self.headers = header.get_header()
@@ -225,7 +240,7 @@ class Weibo(object):
         tree_node = etree.HTML(response.content)
         tweet_nodes = tree_node.xpath('//div[@class="c" and @id]')
         for index, tweet_node in enumerate(tweet_nodes):
-            utils.log_progress(index, len(tweet_nodes))
+            utils.log_progress(index, len(tweet_nodes), '爬取数据')
             if self.count == 0:
                 break
             self.count -= 1
@@ -269,6 +284,7 @@ class Weibo(object):
                     images = tweet_node.xpath('.//a[contains(text(),"原图")]/@href')
                     if not images:
                         images = tweet_node.xpath('.//img[@alt="图片"]/@src')
+                new_images = []
                 if images:
                     packet['imageList'] = [{'img': fix_image_url(self.base_url, image_url)} for image_url in images]
                 else:

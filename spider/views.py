@@ -8,7 +8,8 @@ from WebCrawler import settings
 from spider import net
 from WebCrawler import header
 import os
-
+from spider import utils
+log = settings.log
 def parseInt(value, default=0):
     try:
         value = int(value)
@@ -75,17 +76,19 @@ def confirm(request):
         packets = data.get('packets', [])
         cookie = data.get('cookie', '')
         header.set_cookie(cookie)
-        for packet in packets:
+        for index, packet in enumerate(packets):
+            utils.log_progress(index, len(packets), "上传数据中")
             imageList = packet['imageList']
             image_path_list = net.downloadImage(imageList, modify=True)
             imageList = net.crop_resize_images(imageList)
+            log.info(imageList)
             net.upload_image(imageList, modify=True)
             packet['imageList'] = imageList
             # 删除文件
             # for image_path in image_path_list:
             #     if os.path.exists(image_path):
             #         os.remove(image_path)
-        res = net.batch_save_dynamic(packets)
+        # res = net.batch_save_dynamic(packets)
     return json_response(res)
 
 
