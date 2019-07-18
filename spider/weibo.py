@@ -323,7 +323,7 @@ class Weibo(object):
         tree_node = etree.HTML(response.content)
         urls = tree_node.xpath('.//a[contains(text(),"{0}")]/@href'.format(self.user_name))
         if urls:
-            self.get(urls[0], callback=self.parse_tweet_page)
+            self.get(self.base_url + urls[0], callback=self.parse_tweet_page)
 
     def parse_all_content(self, response):
         tree_node = etree.HTML(response.content)

@@ -400,3 +400,40 @@ ValueError: The view spider.views.upload_avatar didn't return an HttpResponse ob
 2019-07-18 02:24:55,572 - root - ERROR - Expecting value: line 1 column 1 (char 0)
 2019-07-18 03:56:05,571 - root - ERROR - string indices must be integers
 2019-07-18 03:56:07,201 - root - ERROR - string indices must be integers
+2019-07-18 15:53:38,729 - django.request - ERROR - Internal Server Error: /spider/search/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 63, in search
+    count=count)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 133, in __init__
+    self.search()
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 187, in search
+    data=data)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 161, in post
+    return self.net(url, method='POST', callback=callback, data=data, meta=meta)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 148, in net
+    return callback(r)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 326, in parse_user_page
+    self.get(urls[0], callback=self.parse_tweet_page)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 158, in get
+    return self.net(url, callback=callback, data=data, meta=meta)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/weibo.py", line 140, in net
+    r = requests.get(url, headers=self.headers, timeout=30, params=data)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/requests/api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/requests/api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/requests/sessions.py", line 519, in request
+    prep = self.prepare_request(req)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/requests/sessions.py", line 462, in prepare_request
+    hooks=merge_hooks(request.hooks, self.hooks),
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/requests/models.py", line 313, in prepare
+    self.prepare_url(url, params)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/requests/models.py", line 387, in prepare_url
+    raise MissingSchema(error)
+requests.exceptions.MissingSchema: Invalid URL '/caizicaixukun?f=search_0': No schema supplied. Perhaps you meant http:///caizicaixukun?f=search_0?
