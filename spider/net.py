@@ -45,16 +45,19 @@ def downloadImage(imageList, image_dir=settings.IMAGE_DIR, threshold=800, modify
         image_path = os.path.join(image_dir, image_name)
         with open(image_path, 'wb') as f:
             f.write(img)
+        log.info("下载成功" + image_path)
         res.append(image_path)
         if modify:
             image['img'] = image_path
     return res
 
 
-def crop_resize_images(images, image_dir=settings.IMAGE_DIR):
+def crop_resize_images(images):
     res = []
     for image in images:
         image_path = image['img']
+        if not image_path:
+            continue
         image_crop = image['crop']
         im = Image.open(image_path)
         width, height = im.size
@@ -70,11 +73,12 @@ def crop_resize_images(images, image_dir=settings.IMAGE_DIR):
         width = int(ratio * width)
         height = int(ratio * height)
         im = im.resize((width, height))
-        image_path_split = os.path.splitext(image_path)
-        new_image_path = image_path_split[0] + '.' + str(width) + 'x' + str(height) + image_path_split[1]
-        im.save(new_image_path)
+        # image_path_split = os.path.splitext(image_path)
+        # new_image_path = image_path_split[0] + '.' + str(width) + 'x' + str(height) + image_path_split[1]
+        im.save(image_path)
+        log.info("crop成功"+image_path)
         res.append({
-            'img': new_image_path,
+            'img': image_path,
             'width': width,
             'high': height
         })
@@ -94,16 +98,20 @@ def upload_image(imageList, mode='dynamic', modify=False):
         if not image_path:
             continue
         image_name = os.path.split(image_path)[-1]
+        ext = os.path.splitext(image_name)[-1]
         data.append(('originalName', image_name))
-        files.append(('file', (image_name, open(image_path, 'rb'), 'image/jpeg')))
+        files.append(('file', (image_name, open(image_path, 'rb'), 'image/%s' % ext)))
     res = []
     try:
         r = requests.request('POST', url, files=files, data=data)
         data = json.loads(parse.unquote(r.text))['data']
-        res = list(map(lambda x: x['relativePath'], data))
-        if modify:
-            for index, image_url in enumerate(res):
-                imageList[index]['img'] = image_url
+        for index, line in enumerate(data):
+            relativePath = line.get('relativePath')
+            if relativePath:
+                res.append(relativePath)
+                imageList[index]['img'] = relativePath
+            else:
+                imageList[index]['img'] = ''
     except Exception as e:
         log.error(e)
     return res

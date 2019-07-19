@@ -1,3 +1,1 @@
-2019-07-18 19:10:24,815 - root - ERROR - https://weibo.cn/mblog/oripic?id=HE3WaEga1&u=7acfb38bgy1g547bb89bqj20dm0a7jrt
-2019-07-18 19:10:26,268 - root - ERROR - https://weibo.cn/mblog/oripic?id=HE3TnfF4u&u=4a4670fely1g5473ti3xyj22c0340b2a
-2019-07-18 19:10:27,437 - root - ERROR - https://weibo.cn/mblog/oripic?id=HE3pA6Cgu&u=d3ebefa7ly1g544z1qpq9j21ji110b29
+2019-07-19 18:34:12,832 - ERROR - % - 116 - HTTPConnectionPool(host='mobile-api-test.sandanapp.com', port=80): Max retries exceeded with url: /component/upload2/uploadByForm/dynamic (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1085327f0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))

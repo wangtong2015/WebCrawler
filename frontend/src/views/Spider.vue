@@ -525,15 +525,23 @@
             },
             next(){
                 let that = this;
+
                 if(this.progress >= this.packets.length - 1){
                     let packets = this.$utils.copy(this.packets);
+                    let loading = this.$loading({
+                        lock: true,
+                        text: '提交数据中',
+                        spinner: 'el-icon-loading',
+                        background: 'rgba(0, 0, 0, 0.7)'
+                    });
                     this.$net.confirm(packets, this.$store.state.cookie).then((data)=>{
                         that.$message({
                             showClose: true,
                             message: "操作成功",
                             type: 'success'
                         });
-                        that.search()
+                        loading.close();
+                        that.search();
                     }).catch((message)=>{
                         that.$message({
                             showClose: true,
