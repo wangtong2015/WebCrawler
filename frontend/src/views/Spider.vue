@@ -88,9 +88,9 @@
                           v-model="packet.content" placeholder="内容"></el-input>
 
                 <div class="fill row center">
-                    <div v-for="(image, index) in images" class="col center" style="margin: 2%">
+                    <div v-for="(image, index) in images" class="col center" style="margin: 30px 20px">
                         <el-image
-                                style="width: 130px; height: 130px; cursor:pointer;"
+                                style="width: 100px; height: 100px; cursor:pointer;"
                                 :src="image.img"
                                 alt="加载失败"
                                 @click.native="show_toolbox(index)"

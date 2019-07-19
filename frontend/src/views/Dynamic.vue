@@ -7,8 +7,8 @@
                           rows="6"
                           resize="vertical"
                           v-model="packet.content" placeholder="内容"></el-input>
-                <div class="fill row center">
-                    <div v-for="(image, index) in packet.imageList" class="col center" style="margin:10px 5px">
+                <div class="fill row space-around">
+                    <div v-for="(image, index) in packet.imageList" class="col center" style="margin:10px 0">
                         <el-image
                                 style="width: 80px; height: 80px; cursor:pointer;"
                                 :src="image.img"

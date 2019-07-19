@@ -28,3 +28,5 @@
 2019-07-19 18:33:42,826 - INFO - % - 79 - crop成功/Users/wangtong/Codes/Project/WebCrawler/static/img/5695944490396003139.jpeg
 2019-07-19 18:34:12,832 - ERROR - % - 116 - HTTPConnectionPool(host='mobile-api-test.sandanapp.com', port=80): Max retries exceeded with url: /component/upload2/uploadByForm/dynamic (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1085327f0>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known',))
 2019-07-19 18:34:12,834 - INFO - % - 89 - 删除成功/Users/wangtong/Codes/Project/WebCrawler/static/img/5695944490396003139.jpeg
+2019-07-19 18:47:12,370 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-19 18:47:44,745 - ERROR - % - 165 - ConnectionError -- please wait 3 seconds
