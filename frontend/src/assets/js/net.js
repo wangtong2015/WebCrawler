@@ -128,10 +128,10 @@ function search(page, username, keyword, topic, like_num, comment_num, cookie) {
             });
         }).then((packets)=>{
             let res = packets.map(function (packet) {
-                let images = packet.imageList.map(function (image) {
+                let images = packet.imageList.map(function (image, index, arr) {
                     let new_image = {
                         img: image.img,
-                        select: true,
+                        select: index < 3,
                         crop: [0, 0, 100, 100, 100],
                         size: [800, 600, 1]
                     };
