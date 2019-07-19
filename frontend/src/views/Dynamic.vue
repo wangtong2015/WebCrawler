@@ -8,9 +8,9 @@
                           resize="vertical"
                           v-model="packet.content" placeholder="内容"></el-input>
                 <div class="fill row center">
-                    <div v-for="(image, index) in packet.imageList" class="col center" style="margin:2% 1%">
+                    <div v-for="(image, index) in packet.imageList" class="col center" style="margin:10px 5px">
                         <el-image
-                                style="width: 100px; height: 100px; cursor:pointer;"
+                                style="width: 80px; height: 80px; cursor:pointer;"
                                 :src="image.img"
                                 @click.native="show_toolbox(index)"
                                 fit="fill">
