@@ -30,3 +30,107 @@
 2019-07-19 18:34:12,834 - INFO - % - 89 - 删除成功/Users/wangtong/Codes/Project/WebCrawler/static/img/5695944490396003139.jpeg
 2019-07-19 18:47:12,370 - INFO - % - 586 - Watching for file changes with StatReloader
 2019-07-19 18:47:44,745 - ERROR - % - 165 - ConnectionError -- please wait 3 seconds
+2019-07-19 20:18:01,241 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-21 14:25:11,385 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-21 14:25:46,866 - ERROR - % - 116 - 'str' object has no attribute 'get'
+2019-07-21 14:25:47,213 - INFO - % - 48 - 下载成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-8839840571704654037.jpg
+2019-07-21 14:25:49,060 - INFO - % - 48 - 下载成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-7714279319026355109.jpg
+2019-07-21 14:25:49,656 - INFO - % - 48 - 下载成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-8042926711464970773.jpg
+2019-07-21 14:25:49,847 - INFO - % - 79 - crop成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-8839840571704654037.jpg
+2019-07-21 14:25:50,319 - INFO - % - 79 - crop成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-7714279319026355109.jpg
+2019-07-21 14:25:50,596 - INFO - % - 79 - crop成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-8042926711464970773.jpg
+2019-07-21 14:25:51,296 - INFO - % - 89 - 删除成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-8839840571704654037.jpg
+2019-07-21 14:25:51,296 - INFO - % - 89 - 删除成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-7714279319026355109.jpg
+2019-07-21 14:25:51,297 - INFO - % - 89 - 删除成功/Users/wangtong/Codes/Project/WebCrawler/static/img/-8042926711464970773.jpg
+2019-07-21 14:30:14,006 - ERROR - % - 116 - 'str' object does not support item assignment
+2019-07-22 13:54:16,769 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-22 14:01:01,079 - INFO - % - 213 - /Users/wangtong/Codes/Project/WebCrawler/spider/urls.py changed, reloading.
+2019-07-22 14:01:01,632 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-22 14:01:09,415 - INFO - % - 213 - /Users/wangtong/Codes/Project/WebCrawler/spider/urls.py changed, reloading.
+2019-07-22 14:01:09,775 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-22 14:02:11,886 - ERROR - % - 228 - Internal Server Error: /spider/test
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/utils/deprecation.py", line 93, in __call__
+    response = self.process_request(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 53, in process_request
+    path = self.get_full_path_with_slash(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/middleware/common.py", line 93, in get_full_path_with_slash
+    'url': request.get_host() + new_path,
+RuntimeError: You called this URL via POST, but the URL doesn't end in a slash and you have APPEND_SLASH set. Django can't redirect to the slash URL while maintaining POST data. Change your form to point to 127.0.0.1:8000/spider/test/ (note the trailing slash), or set APPEND_SLASH=False in your Django settings.
+2019-07-22 14:02:18,799 - ERROR - % - 228 - Internal Server Error: /spider/test/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 184, in test
+    data = json.loads(request.body)
+  File "/anaconda3/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/anaconda3/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/anaconda3/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2019-07-22 14:02:20,421 - ERROR - % - 228 - Internal Server Error: /spider/test/
+Traceback (most recent call last):
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/Users/wangtong/Codes/Project/WebCrawler/venv/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/WebCrawler/spider/views.py", line 184, in test
+    data = json.loads(request.body)
+  File "/anaconda3/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/anaconda3/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/anaconda3/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2019-07-22 14:03:02,622 - INFO - % - 213 - /Users/wangtong/Codes/Project/WebCrawler/spider/views.py changed, reloading.
+2019-07-22 14:03:03,222 - INFO - % - 586 - Watching for file changes with StatReloader
+2019-07-23 11:50:22,570 - WARNING - % - 228 - Not Found: /robots.txt
+2019-07-23 11:50:22,993 - ERROR - % - 228 - Internal Server Error: /spider/user/fetchUser/
+Traceback (most recent call last):
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/散弹/WebCrawler/spider/views.py", line 102, in fetch_user
+    res = net.fetch_vest_user_list(count)
+TypeError: fetch_vest_user_list() takes 0 positional arguments but 1 was given
+2019-07-23 11:50:23,260 - WARNING - % - 228 - Not Found: /favicon.ico
+2019-07-23 11:50:25,293 - ERROR - % - 228 - Internal Server Error: /spider/user/fetchUser/
+Traceback (most recent call last):
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/散弹/WebCrawler/spider/views.py", line 102, in fetch_user
+    res = net.fetch_vest_user_list(count)
+TypeError: fetch_vest_user_list() takes 0 positional arguments but 1 was given
+2019-07-23 11:50:26,561 - ERROR - % - 228 - Internal Server Error: /spider/user/fetchUser/
+Traceback (most recent call last):
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/base.py", line 126, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/anaconda3/lib/python3.6/site-packages/django/core/handlers/base.py", line 124, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/wangtong/Codes/Project/散弹/WebCrawler/spider/views.py", line 102, in fetch_user
+    res = net.fetch_vest_user_list(count)
+TypeError: fetch_vest_user_list() takes 0 positional arguments but 1 was given
+2019-07-23 12:07:47,906 - ERROR - % - 165 - ConnectionError -- please wait 3 seconds
+2019-07-23 12:08:44,584 - ERROR - % - 165 - ConnectionError -- please wait 3 seconds
+2019-07-23 12:21:33,330 - WARNING - % - 228 - Not Found: /robots.txt
+2019-07-23 12:21:34,020 - WARNING - % - 228 - Not Found: /favicon.ico

@@ -10,5 +10,6 @@ urlpatterns = [
     path('user/addUser/', views.add_user),
     path('groups/', views.groups),
     path('upload/image/avatar/', views.upload_avatar),
-    path('upload/image/', views.upload_image)
+    path('upload/image/', views.upload_image),
+    path('test/', views.test)
 ]

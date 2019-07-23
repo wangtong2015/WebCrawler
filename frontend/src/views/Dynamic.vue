@@ -1,35 +1,41 @@
 <template>
     <div id="app" class="fill col center top">
-
+        <div class="header">
+            <div class="fillW row left">
+                <el-select v-model="spider_url.base" placeholder="请选择">
+                    <el-option
+                            v-for="item in spider_url_options"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value">
+                    </el-option>
+                </el-select>
+                <el-input type="text"
+                          resize="vertical"
+                          v-model="spider_url.url" placeholder="链接（注意是具体内容的链接）"></el-input>
+                <el-button type="primary"
+                @click="crawl"
+                :disabled="spider_url.url.length > 0"
+                style="width: 10%"
+                >爬取</el-button>
+            </div>
+        </div>
         <div class="main" style="margin: 0;">
             <div class="fill col center top">
                 <el-input type="textarea"
                           rows="6"
                           resize="vertical"
                           v-model="packet.content" placeholder="内容"></el-input>
-                <div class="fill row space-around">
-                    <div v-for="(image, index) in packet.imageList" class="col center" style="margin:10px 0">
-                        <el-image
-                                style="width: 80px; height: 80px; cursor:pointer;"
-                                :src="image.img"
-                                @click.native="show_toolbox(index)"
-                                fit="fill">
-                        </el-image>
-                        <el-checkbox v-model="image.select"></el-checkbox>
-                    </div>
-                </div>
                 <div class="fillW row center" style="margin-top: 1%">
-                    <el-badge :value="packet.like_num">
-                        <el-tag effect="plain">点赞</el-tag>
-                    </el-badge>
-                    <div style="width: 8%"></div>
-                    <el-badge :value="packet.commentsList.length">
-                        <el-tag type="warning" effect="plain">评论</el-tag>
-                    </el-badge>
-                    <div style="width: 8%"></div>
-                    <el-badge :value="packet.repost_num">
-                        <el-tag type="warning" effect="plain">转发</el-tag>
-                    </el-badge>
+                    <el-upload
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            list-type="picture-card"
+                            show-file-list="true"
+                            :file-list="imageList"
+                            :on-preview="handlePictureCardPreview"
+                            :on-remove="handleRemove">
+                        <i class="el-icon-plus"></i>
+                    </el-upload>
                 </div>
                 <div class="fill row center">
                     <div v-for="group in packet.groups" style="margin:1% 2%;">
@@ -94,128 +100,11 @@
             </div>
         </div>
 
-        <!--<div class="footer">-->
-            <!--<div class="fill">-->
-                <!--<el-row :gutter="20"-->
-                        <!--type="flex"-->
-                        <!--align="middle"-->
-                        <!--justify="space-around">-->
 
-                    <!--<el-col :span="1">-->
-                        <!--{{progress}}/{{packets.length}}-->
-                    <!--</el-col>-->
+        <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+        </el-dialog>
 
-                    <!--<el-col :span="3">-->
-                        <!--<div class="fill col center middle" style="text-align: center; vertical-align: center">-->
-                            <!--<el-switch-->
-                                    <!--style="width: 100%; height: 100%; margin: auto"-->
-                                    <!--v-model="packet.select"-->
-                                    <!--active-text="选择"-->
-                                    <!--inactive-text="不选择">-->
-                            <!--</el-switch>-->
-                        <!--</div>-->
-                    <!--</el-col>-->
-
-                    <!--<el-col :span="3">-->
-                        <!--<el-button type="primary"-->
-                                   <!--@click="previous"-->
-                                   <!--:disabled="progress <= 0 || packets.length <= 0"-->
-                                   <!--class="fillW">上一条</el-button>-->
-                    <!--</el-col>-->
-
-                    <!--<el-col :span="3">-->
-                        <!--<el-button v-if="progress === packets.length - 1"-->
-                                   <!--type="danger"-->
-                                   <!--@click="confirm"-->
-                                   <!--:disabled="packets.length <= 0"-->
-                                   <!--class="fillW">提交</el-button>-->
-                        <!--<el-button v-else-->
-                                   <!--type="primary"-->
-                                   <!--@click="confirm"-->
-                                   <!--:disabled="packets.length <= 0"-->
-                                   <!--class="fillW">确认</el-button>-->
-                    <!--</el-col>-->
-
-                    <!--<el-col :span="3">-->
-                        <!--<el-button v-if="progress >= packets.length - 1"-->
-                                   <!--type="danger"-->
-                                   <!--@click="skip"-->
-                                   <!--:disabled="packets.length <= 0"-->
-                                   <!--class="fillW">跳过并提交</el-button>-->
-                        <!--<el-button v-else-->
-                                   <!--type="primary"-->
-                                   <!--@click="skip"-->
-                                   <!--:disabled="packets.length <= 0"-->
-                                   <!--class="fillW">跳过</el-button>-->
-                    <!--</el-col>-->
-
-                    <!--<el-col :span="5">-->
-                        <!--<div class="fill row left">-->
-                            <!--<el-avatar class="pointer"-->
-                                       <!--shape="square"-->
-                                       <!--size="large"-->
-                                       <!--style="margin-right: 1%"-->
-                                       <!--:src="packet.user.avatar"></el-avatar>-->
-
-                            <!--<el-autocomplete-->
-                                    <!--v-model="packet.user.value"-->
-                                    <!--:fetch-suggestions="robotSearch"-->
-                                    <!--style="width: 100%"-->
-                                    <!--@select="select_robot($event, packet.user)"-->
-                                    <!--placeholder="马甲号">-->
-                            <!--</el-autocomplete>-->
-                        <!--</div>-->
-                    <!--</el-col>-->
-
-                    <!--<el-col :span="4">-->
-                        <!--<div class="fill row left">-->
-                            <!--<div class="label left">-->
-                                <!--发送时间-->
-                            <!--</div>-->
-                            <!--<el-date-picker-->
-                                    <!--v-model="packet.addTime"-->
-                                    <!--align="right"-->
-                                    <!--type="datetime"-->
-                                    <!--placeholder="选择日期"-->
-                                    <!--:picker-options="date_picker_options">-->
-                            <!--</el-date-picker>-->
-                        <!--</div>-->
-                    <!--</el-col>-->
-
-                <!--</el-row>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<el-dialog title="图片预览"-->
-                   <!--width="840px"-->
-                   <!--:visible.sync="toolbox_show">-->
-            <!--<el-carousel :autoplay="false"-->
-                         <!--indicator-position="outside"-->
-                         <!--height="670px"-->
-                         <!--id="carousel"-->
-                         <!--ref="carousel"-->
-                         <!--style="width: 800px;"-->
-                         <!--:initial-index="image_index"-->
-                         <!--arrow="hover">-->
-
-                <!--<el-carousel-item v-for="(image, index) in packet.imageList"-->
-                                  <!--class="fill col center middle"-->
-                                  <!--style="text-align: center;"-->
-                                  <!--:key="index">-->
-                    <!--<div style="width: 800px; height: 600px;">-->
-                        <!--<div class="cropbox" :style="crop_style(image)"></div>-->
-                        <!--<img :src="image.img"-->
-                             <!--style="object-fit: fill;width: 800px; height: 600px; position: absolute; left: 0; top: 0; z-index: 4"/>-->
-                    <!--</div>-->
-                    <!--<div class="row space-around middle" style="margin-top: 2%">-->
-                        <!--<el-input-number v-model="image.crop[0]" controls-position="right" :min="0" :max="100"></el-input-number>-->
-                        <!--<el-input-number v-model="image.crop[1]" controls-position="right" :min="0" :max="100"></el-input-number>-->
-                        <!--<el-input-number v-model="image.crop[2]" controls-position="right" :min="0" :max="100"></el-input-number>-->
-                        <!--<el-input-number v-model="image.crop[3]" controls-position="right" :min="0" :max="100"></el-input-number>-->
-                    <!--</div>-->
-                <!--</el-carousel-item>-->
-            <!--</el-carousel>-->
-        <!--</el-dialog>-->
 
     </div>
 </template>
@@ -231,6 +120,14 @@
         name: 'Dynamic',
         data() {
             return {
+                spider_url: {
+                    base: "m.weibo.cn",
+                    url: ""
+                },
+                spider_url_options: [
+                    {value: 'weibo.cn', label: 'weibo.cn'},
+                    {value: 'm.weibo.cn', label: 'm.weibo.cn'}
+                ],
                 packet: {
                     content: this.$convert.toUnicode("[大笑]"),
                     addTime: Date.now() + 10000,
@@ -241,7 +138,10 @@
                         nickName: "",
                         value: ""
                     },
-                    imageList: [],
+                    imageList: [{
+                        name: "food.jpeg",
+                        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+                    }],
                     commentsList:[{
                         user: {
                             avatar: "",
@@ -252,12 +152,16 @@
                         },
                         commentContent: "",
                         addTime: Date.now() + 100000
-                    }],
-                    like_num: 0,
-                    repost_num: 0,
-                    groups: []
+                    }]
                 },
                 toolbox_show: false,
+
+
+                // dialog
+                dialogImageUrl: "",
+                dialogVisible: false,
+
+
                 image_index: 0,
                 date_picker_options: {
                     disabledDate(time) {
@@ -320,6 +224,9 @@
             })
         },
         methods: {
+            crawl(event){
+
+            },
             changeSelect(obj){
                 obj.select = !obj.select;
                 this.$forceUpdate()

@@ -99,7 +99,7 @@ def fetch_user(request):
     if request.method == 'GET':
         count = request.GET.get('count', 100)
         count = parseInt(count, 100)
-        res = net.fetch_vest_user_list(count)
+        res = net.fetch_vest_user_list()
     return json_response(res)
 
 
@@ -177,3 +177,11 @@ def add_user(request):
         print(res)
     return json_response(res)
 
+
+def test(request):
+    res = []
+    if request.method == 'POST':
+        data = request.POST
+        print(data)
+        # res = data
+    return json_response(res)

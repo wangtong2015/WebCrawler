@@ -81,11 +81,17 @@
         </div>
         <div class="main" style="margin: 0;">
             <div class="fill col center top">
-                <el-input type="textarea"
-                          show-word-limit
-                          rows="6"
-                          resize="vertical"
-                          v-model="packet.content" placeholder="内容"></el-input>
+                <div class="fillW space-around row">
+                    <el-input type="textarea"
+                              show-word-limit
+                              rows="6"
+                              resize="vertical"
+                              v-model="packet.content" placeholder="内容"></el-input>
+                    <div class="col center middle">
+                        <el-button @click="remove_slash">去除双斜杠</el-button>
+                    </div>
+                </div>
+
 
                 <div class="fill row center">
                     <div v-for="(image, index) in images" class="col center" style="margin: 30px 20px">
@@ -541,6 +547,7 @@
                             type: 'success'
                         });
                         loading.close();
+                        that.page += 1;
                         that.search();
                     }).catch((message)=>{
                         that.$message({
@@ -548,9 +555,9 @@
                             message: message,
                             type: 'error'
                         });
+                        that.page += 1;
                         that.search()
                     });
-                    this.page += 1;
                 }else{
                     this.progress += 1;
                     if(this.packets[this.progress].sent_time < Date.now()){
@@ -596,7 +603,6 @@
                 user.nickName = robot.nickName;
                 user.age = robot.age;
                 user.value = robot.value;
-                console.log(robot);
                 this.$forceUpdate()
             },
             cal_image_width(image){
@@ -607,6 +613,16 @@
             },
             cal_image_size(image){
                 return (this.cal_image_width(image) * this.cal_image_height(image) * 3  /1024 / 1024 / 8* image.crop[4] / 100).toFixed(2)
+            },
+            remove_slash(event){
+                let content = this.packet.content;
+                let content_split = content.split("//");
+                for(let i = 0; i < content_split.length; i++){
+                    if(content_split[i]){
+                        this.packet.content = content_split[i];
+                        break;
+                    }
+                }
             }
         }
     }

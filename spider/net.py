@@ -132,11 +132,11 @@ def add_vest_user(users):
     return res
 
 
-def fetch_vest_user_list(count=100):
+def fetch_vest_user_list():
     url = settings.TEST_URL + '/api/user/fetchVestUserList'
     res = []
     try:
-        r = requests.get(url, params={"listSize": count})
+        r = requests.get(url)
         res = json.loads(parse.unquote(r.text))['data']
     except Exception as e:
         log.error(e)
